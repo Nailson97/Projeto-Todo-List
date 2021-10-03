@@ -1,14 +1,25 @@
 import React, { useState } from 'react'
 import './Todo.css'
+import List from './List'
 
 
 function Todo() {
 
   const [text, setText] = useState('')
+  const [items, setItems] = useState([])
  
   function handleChange(event) {
       let t = event.target.value
       setText(t)
+  }
+
+  function addItem(event) {
+      event.preventDefault()
+      if(text){
+        setItems([...items, text])
+        setText('')
+      }
+      
   }
   
 
@@ -16,13 +27,10 @@ function Todo() {
        <div className='container'>
           <h1>Todo List</h1>
           <form>
-             <input onCtype='text'  onChange={handleChange}></input>
-             <button>Adicionar</button>
+             <input onCtype='text' value={text}  onChange={handleChange}></input>
+             <button onClick={addItem}>Adicionar</button>
           </form>
-
-          <ul>
-            <li>{text}</li>
-          </ul>
+             <List items={items}/>
        </div>
   )
 }
