@@ -1,38 +1,28 @@
 import React, { useState } from 'react'
 import './Todo.css'
 import List from './List'
+import TodoForm from './TodoForm'
 
 
 function Todo() {
 
-  const [text, setText] = useState('')
   const [items, setItems] = useState([])
- 
-  function handleChange(event) {
-      let t = event.target.value
-      setText(t)
-  }
 
-  function addItem(event) {
-      event.preventDefault()
-      if(text){
-        setItems([...items, text])
-        setText('')
-      }
-      
+  function onAddItem(item) {
+      setItems([...items, item])
   }
+ 
+  
   
 
   return (
        <div className='container'>
           <h1>Todo List</h1>
-          <form>
-             <input onCtype='text' value={text}  onChange={handleChange}></input>
-             <button onClick={addItem}>Adicionar</button>
-          </form>
+              <TodoForm onAddItem={onAddItem}></TodoForm>
              <List items={items}/>
        </div>
   )
 }
+
 
 export default Todo;
