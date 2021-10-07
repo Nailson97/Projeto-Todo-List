@@ -6,7 +6,7 @@ function List(props) {
     <ul>
     {props.items.map((item) => {
       return(
-        <li>{item}</li>
+        <li key={item.id}>{item.text}</li>
       )
     })}
     </ul>
